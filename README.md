@@ -7,12 +7,12 @@ Users can navigate through questions, and their final score is displayed upon co
 
 Features
 --------
-At least five multiple-choice questions with four answer options each.
-Correct answer validation and feedback.
-User score tracking and display.
-Navigation through questions.
-Final score display.
-Optional bonus features: timer and restart button.
+1. At least five multiple-choice questions with four answer options each.
+2. Correct answer validation and feedback.
+3. User score tracking and display.
+4. Navigation through questions.
+5. Final score display.
+6. Optional bonus features: timer and restart button.
 
 
 Demo
