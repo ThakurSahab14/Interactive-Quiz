@@ -10,9 +10,17 @@
 
 <body>
     <div class="quiz-container">
-        <h1>Quiz Time</h1>
+        <div style="width:fit-content;">
+            <button id="restartQuiz" class="restartBtn" onclick="restartQuiz()">
+                Restart Quiz
+            </button>
+        </div>
+        <div>
+            <h1 class="quizHeading">Quiz Time</h1>
+        </div>
+
         <div class="timer">
-            <span id="timeleft">10</span> seconds left
+            <span id="timeLeft">10</span> seconds left
         </div>
 
         <div id="question-container">
@@ -22,7 +30,7 @@
         </div>
 
         <button id="next-button" class="btnNext" onclick="nextQuestion()">Next</button>
-        <p id="result"></p>
+        <h3 id="result"></h3>
         <p id="score"></p>
     </div>
     <script src="script.js"></script>

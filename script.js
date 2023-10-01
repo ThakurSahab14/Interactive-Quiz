@@ -1,55 +1,65 @@
 const questions = [
     {
-        question: "What is the capital of France?",
-        options: ["Paris", "Berlin", "Madrid", "Rome"],
-        answer: "Paris"
+        question: "What is the purpose of inheritance in OOP?",
+        options: ["Code reusability", "Data hiding", "Method overloading", "Exception handling"],
+        answer: "Code reusability"
     },
     {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Venus", "Mars", "Jupiter", "Saturn"],
-        answer: "Mars"
+        question: "What is the purpose of abstraction in OOP?",
+        options: ["To hide implementation details and show only essential features", "To make code more complex", "To prevent inheritance", "To enforce encapsulation"],
+        answer: "To hide implementation details and show only essential features"
     },
     {
-        question: "What is the largest mammal in the world?",
-        options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
-        answer: "Blue Whale"
+        question: "What does CSS stand for?",
+        options: ["Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets", "Creative Style Sheets"],
+        answer: "Cascading Style Sheets"
     },
     {
-        question: "Which gas do plants absorb from the atmosphere?",
-        options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
-        answer: "Carbon Dioxide"
+        question: "How can you select all the paragraphs on a web page in CSS?",
+        options: ["p { }", "paragraph { }", ".p { }", "#paragraphs { }"],
+        answer: "p { }"
+
     },
     {
-        question: "Who wrote the play 'Romeo and Juliet'?",
-        options: ["Shakespeare", "Hemingway", "Tolstoy", "Fitzgerald"],
-        answer: "Shakespeare"
+        question: "What does the 'Cascading' in CSS refer to?",
+        options: ["Cascading refers to the order of styles applied", "Cascading refers to waterfalls", "Cascading refers to rainbows", "Cascading refers to animations"],
+        answer: "Cascading refers to the order of styles applied"
     }
 ];
 
-let currentQuestionIndex = 0;
+let currentquestionIndex = 0;
 let score = 0;
 let timer;
 const timeLimit = 10;
 
-const questionElement = document.getElementById('question');
+const question = document.getElementById('question');
 const optionsElement = document.getElementById('options');
 const resultElement = document.getElementById('result');
 const scoreElement = document.getElementById('score');
 const nextButton = document.getElementById('next-button');
-// const FinalScore = document.getElementById('FinalScore');
 
-function loadQuestion() {
-    clearInterval(timer); 
 
-    const currentQuestion = questions[currentQuestionIndex];
-    questionElement.textContent = currentQuestion.question;
+function restartQuiz() {
+    score = 0;
+    currentquestionIndex = 0;
+    loadquestion();
+}
 
+function loadquestion() {
+
+    clearInterval(timer);
+
+    const currentquestion = questions[currentquestionIndex];
+    question.textContent = currentquestion.question;
+    resultElement.textContent = "";
+    scoreElement.textContent = ``;
+    nextButton.style.display = 'flex';
     optionsElement.innerHTML = '';
-    currentQuestion.options.forEach((option, index) => {
+    currentquestion.options.forEach((option, index) => {
         const button = document.createElement('button');
         button.textContent = option;
         button.classList.add('btn');
-        button.addEventListener('click', () => checkAnswer(option));
+        button.addEventListener('click', () => checkanswer(option));
         optionsElement.appendChild(button);
     });
 
@@ -64,64 +74,72 @@ function startTimer() {
             timeIsUp();
         } else {
             timeRemaining--;
-            timeleft.textContent = `${timeRemaining}s`;
-            ;
+            timeLeft.textContent = `${timeRemaining}s`;
         }
     }, 1000);
 }
 
-function checkAnswer(selectedOption) {
-    clearInterval(timer); 
+function checkanswer(selectedOption) {
+    clearInterval(timer);
 
-    const currentQuestion = questions[currentQuestionIndex];
-    if (selectedOption === currentQuestion.answer) {
-        score++;
+    const currentquestion = questions[currentquestionIndex];
+    if (selectedOption === currentquestion.answer) {
         resultElement.textContent = "Correct!";
+        resultElement.style.color = 'Green';
+        score++;
     } else {
         resultElement.textContent = "Wrong!";
+        resultElement.style.color = 'Red';
     }
 
-    currentQuestionIndex++;
+    currentquestionIndex++;
 
-    if (currentQuestionIndex < questions.length) {
-        loadQuestion();
+    if (currentquestionIndex < questions.length) {
+        setTimeout(loadquestion, 1000);
     } else {
         showFinalScore();
     }
-   
 }
 
 function timeIsUp() {
     resultElement.textContent = "Time's up!";
-    currentQuestionIndex++;
+    currentquestionIndex++;
 
-    if (currentQuestionIndex < questions.length) {
-        loadQuestion();
+    if (currentquestionIndex < questions.length) {
+        loadquestion();
     } else {
         showFinalScore();
     }
-    
+}
+
+function nextquestion() {
+    currentquestionIndex++;
+    if (currentquestionIndex < questions.length) {
+        loadquestion();
+    } else {
+        showFinalScore();
+    }
+}
+
+function nextQuestion() {
+    currentquestionIndex++;
+    if (currentquestionIndex < questions.length) {
+        loadquestion();
+    } else {
+        showFinalScore();
+    }
 }
 
 function showFinalScore() {
-    questionElement.textContent = "Quiz Completed!";
+    question.textContent = "Quiz Completed!";
     optionsElement.innerHTML = '';
     resultElement.textContent = '';
     nextButton.style.display = 'none';
     timeLeft.textContent = '';
-    document.getElementById('timeleft').textContent = '';
+    document.getElementById('timeLeft').textContent = '';
     document.getElementById('next-button').style.display = 'none';
-    document.getElementById('score').textContent = `Score: ${score}`; 
-    console.log(score);
-}
-function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        loadQuestion();
-    } else {
-        showFinalScore();
-    }
+    scoreElement.textContent = `Your Final Score is: ${score}`;
+    // console.log(score);
 }
 
-
-loadQuestion();
+loadquestion();

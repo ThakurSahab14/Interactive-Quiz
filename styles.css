@@ -10,8 +10,24 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px;
     max-width: 500px;
-    margin : 0 auto;
-    height :400px;
+    margin: 0 auto;
+    height: 450px;
+}
+
+.restartBtn {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 16px;
+    float: right;
+}
+
+.restartBtn:hover {
+    background-color: rgb(255, 68, 0);
 }
 
 h1 {
@@ -34,6 +50,7 @@ h1 {
     margin-top: 10px;
     font-size: 16px;
 }
+
 .btnNext {
     background-color: #0056b3;
     color: white;
@@ -47,10 +64,8 @@ h1 {
 }
 
 .btnNext:hover {
-    background-color: blue;
+    background-color: rgb(255, 68, 0);
 }
-
-
 
 .btn:hover {
     background-color: #0056b3;
@@ -70,10 +85,11 @@ h1 {
     background-color: #ff5722;
 }
 
-#timeleft {
+#timeLeft {
     color: #ff5722;
     font-weight: bold;
 }
-#result{
-      margin-left:85px;
+
+#result {
+    margin-left: 85px;
 }
